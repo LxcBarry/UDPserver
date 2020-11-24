@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\19798\.nuget\packages\nlog.config\4.7.5\contentFiles\any\any\NLog.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.0.0" />
+    <PackageReference Include="DbApi" Version="1.0.0" />
+  </ItemGroup>
+
+</Project>
