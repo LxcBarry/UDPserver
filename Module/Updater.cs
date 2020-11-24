@@ -45,7 +45,7 @@ namespace UDPserver
             Logger.Info("开始更新天气信息");
             
             var result = await weatherGetter.UpdateWeatherAsync();
-            if(result > 0)
+            if (result > 0)
             {
                 Logger.Info("开始天气推送");
                 server.SendMessage();

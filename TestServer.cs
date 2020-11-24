@@ -42,7 +42,7 @@ namespace UDPTest
         {
             if (!IsUdpcRecvStart) // 未监听的情况，开始监听
             {
-                localIpep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 8899); // 本机IP和监听端口号
+                localIpep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 8869); // 本机IP和监听端口号
                 udpcRecv = new UdpClient(localIpep);
                 thrRecv = new Thread(ReceiveMessage);
                 thrRecv.Start();

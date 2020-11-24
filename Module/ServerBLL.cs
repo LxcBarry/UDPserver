@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
@@ -28,7 +30,7 @@ namespace UDPserver
             _passwordDisposal = password;
 
             //内置发送客户端
-            UdpcSend = new UdpClient(8888);
+            UdpcSend = new UdpClient(8887);
         }
         
         public async Task<string> Login(string msg)
@@ -81,6 +83,16 @@ namespace UDPserver
         public async Task<string> GetSendDataAsync(string msg = null)
         {
             return await _sendDisposal.RunAsync(msg);
+        }
+        public async void SendWeather()
+        {
+            var msgs = await _sendDisposal.RunAsync();
+            var msgsJo = JsonConvert.DeserializeObject<List<JObject>>(msgs);
+            foreach(var jo in msgsJo)
+            {
+                var result = SendAsync(jo["Ip"].ToString(), jo["Content"].ToString());
+            }
+            //return null;
         }
 
     }

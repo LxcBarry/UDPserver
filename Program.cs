@@ -64,13 +64,13 @@ namespace UDPserver
 
             //var updater = WeatherGetter();
 
-            //var weatherUpdater = container.ResolveNamed<IUpdater>("weatherUpdater");
+            var weatherUpdater = container.ResolveNamed<IUpdater>("weatherUpdater");
             //weatherUpdater.AutoUpdate();
             //var result = weatherUpdater.
             //var updater = container.
-            //weatherUpdater.AutoUpdate();
-            var server = container.Resolve<UDPserver>();
-            server.StartRecv();
+            weatherUpdater.AutoUpdate();
+            //var server = container.Resolve<UDPserver>();
+            //server.StartRecv();
             //server.SendMessage();
             //var log = new Log();
             //Logger.Info("hello world!");
