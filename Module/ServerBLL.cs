@@ -50,23 +50,33 @@ namespace UDPserver
         public async Task<string> DisposalAsync(string msg)
         {
             var str = msg.Substring(0, 3);
+            string result = null;
             if ( str == "LOG")
             {
-                return await Login(msg[3..]);
+                result = await Login(msg[3..])==null?null:"LOG";
             }
             else if (str == "REG")
             {
-                return await Register(msg[3..]);
+                result = await Register(msg[3..])==null?null:"REG";
             }
             else if (str == "PWD")
             {
-                return await PwdUpdate(msg[3..]);
+                result = await PwdUpdate(msg[3..])==null?null:"PWD";
             }
             else
             {
                 Logger.Info("receive invalid command");
-                return null;
+                //return null;
             }
+            // 可优化
+            var jo = JsonConvert.DeserializeObject<JObject>(msg[3..]);
+            if(result !=null)
+                return await SendAsync(result+"SUC", jo["ip"].ToString())>0?"sucess":null;
+            else
+            {
+                return await SendAsync(result+"FAL", jo["ip"].ToString()) > 0 ? "sucess" : null;
+            }
+            return null;
         }
 
         private async Task<int> SendAsync(string msg,string host)
@@ -84,13 +94,13 @@ namespace UDPserver
         {
             return await _sendDisposal.RunAsync(msg);
         }
-        public async void SendWeather()
+        public async Task SendWeather()
         {
             var msgs = await _sendDisposal.RunAsync();
             var msgsJo = JsonConvert.DeserializeObject<List<JObject>>(msgs);
             foreach(var jo in msgsJo)
             {
-                var result = SendAsync(jo["Ip"].ToString(), jo["Content"].ToString());
+                var result = SendAsync("WEA"+jo["Content"].ToString(),jo["Ip"].ToString());
             }
             //return null;
         }

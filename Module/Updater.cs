@@ -16,11 +16,13 @@ namespace UDPserver
     public class WeatherUpdater:IUpdater
     {
         private readonly WeatherGetter weatherGetter;
-        private readonly UDPserver server;
-        public WeatherUpdater(WeatherGetter dataGetter,UDPserver uDPserver)
+        //private readonly UDPserver server;
+        private readonly ServerBLL bLL;
+        public WeatherUpdater(WeatherGetter dataGetter,ServerBLL bll)
         {
             weatherGetter = dataGetter;
-            server = uDPserver;
+            //server = uDPserver;
+            bLL = bll;
         }
         public void AutoUpdate()
         {
@@ -48,7 +50,9 @@ namespace UDPserver
             if (result > 0)
             {
                 Logger.Info("开始天气推送");
-                server.SendMessage();
+                //server.SendMessage();
+                await bLL.SendWeather();
+                Logger.Info("已经把天气推送到发送进程中");
             }
             else
             {

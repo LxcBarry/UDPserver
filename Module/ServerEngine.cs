@@ -110,26 +110,26 @@ namespace UDPserver
                 }
             }
         }
-        public async void SendMessage()
-        {
-            try
-            {
-                var data = await _disposal.GetSendDataAsync();
-                var msgs = JsonConvert.DeserializeObject<List<JObject>>(data);
-                foreach (var msg in msgs)
-                {
-                    byte[] sendbytes = Encoding.Unicode.GetBytes(msg["Content"].ToString());
-                    var ipAndPort = msg["Ip"].ToString().Split(":");
-                    IPEndPoint remoteIpep = new IPEndPoint(IPAddress.Parse(ipAndPort[0]), int.Parse(ipAndPort[1])); // 发送到的IP地址和端口号
-                    var result = udpcSend.SendAsync(sendbytes, sendbytes.Length, remoteIpep);
-                }
-                Logger.Info("已经推送数据");
-            }
-            catch (Exception ex)
-            {
-                Logger.Fatal($"发送数据异常: {ex.Message}");
-            }
-        }
+        //public async void SendMessage()
+        //{
+        //    try
+        //    {
+        //        var data = await _disposal.GetSendDataAsync();
+        //        var msgs = JsonConvert.DeserializeObject<List<JObject>>(data);
+        //        foreach (var msg in msgs)
+        //        {
+        //            byte[] sendbytes = Encoding.Unicode.GetBytes(msg["Content"].ToString());
+        //            var ipAndPort = msg["Ip"].ToString().Split(":");
+        //            IPEndPoint remoteIpep = new IPEndPoint(IPAddress.Parse(ipAndPort[0]), int.Parse(ipAndPort[1])); // 发送到的IP地址和端口号
+        //            var result = udpcSend.SendAsync(sendbytes, sendbytes.Length, remoteIpep);
+        //        }
+        //        Logger.Info("已经推送数据");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Logger.Fatal($"发送数据异常: {ex.Message}");
+        //    }
+        //}
 
     }
 }

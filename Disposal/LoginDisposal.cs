@@ -56,7 +56,7 @@ namespace UDPserver.Disposal
                     //return await dbApi.SaveChangeAsync() > 0 ? "sucess" : "no change";
                     //return null;
                 }
-                else return "用户登陆异常";
+                else return null;
            
             }
             catch(Exception ex)
