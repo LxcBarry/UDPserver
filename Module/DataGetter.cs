@@ -23,7 +23,7 @@ namespace UDPserver
         public Task<int> InitWeatherAsync();
     }
 
-    public class WeatherGetter:IDataGetter
+    public class WeatherGetter : IDataGetter
     {
         private readonly AppSettingsReader Reader;
         private readonly WebClient Client;
@@ -50,7 +50,7 @@ namespace UDPserver
             var result = new JObject();
             try
             {
-              
+
                 JObject ForecastJo = JsonConvert.DeserializeObject<JObject>(Client.DownloadString(ForecastURL + city));
                 JObject LiveJo = JsonConvert.DeserializeObject<JObject>(Client.DownloadString(LiveURL + city));
                 //result = jo["forecasts"].FirstOrDefault().ToString();
@@ -89,9 +89,9 @@ namespace UDPserver
         public async Task<int> InitWeatherAsync()
         {
             var result = await Api.GetReferenceAsync();
-           
+
             var jo_list = JsonConvert.DeserializeObject<List<JObject>>(result);
-            foreach(var jo in jo_list)
+            foreach (var jo in jo_list)
             {
                 jo.Add("Site", jo["Adcode"]);
                 jo.Remove("Adcode");

@@ -23,7 +23,7 @@ namespace UDPserver
         IPEndPoint localIpep = null;
         bool IsUdpcRecvStart = false;
         Task thrRecv;
-        Task thrSend;
+        //Task thrSend;
         private readonly ServerBLL _disposal;
         
         public UDPserver(ServerBLL disposal)

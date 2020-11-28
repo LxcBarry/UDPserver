@@ -30,8 +30,8 @@ namespace UDPserver
             var cb = new ContainerBuilder();
             //数据接口层
             cb.RegisterType<DbApi.DbApi>()
-                .AsSelf()
-                .SingleInstance();
+                .AsSelf();
+                //.SingleInstance();
             //数据更新
             cb.RegisterType<WeatherUpdater>()
                 .Named<IUpdater>("weatherUpdater")
