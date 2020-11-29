@@ -40,7 +40,7 @@ namespace UDPserver
                 .AsSelf()
                 .SingleInstance();
             //服务逻辑
-            cb.RegisterType<ServerBLL>()   //需要新增命令时，在这个类中增加服务实例
+            cb.RegisterType<ServerBLL>()   //需要新增命令时，在这个类中增加服务实例,
                 .AsSelf()
                 .SingleInstance();
             cb.RegisterType<LoginDisposal>() //登陆处理
@@ -55,6 +55,13 @@ namespace UDPserver
             cb.RegisterType<PasswordDisposal>()  //修改密码
                 .AsSelf()
                 .SingleInstance();
+            cb.RegisterType<GetRegisterDisposal>() //获取用户订阅
+                .AsSelf()
+                .SingleInstance();
+            cb.RegisterType<RemoveRegDisposal>() //删除记录
+                .AsSelf()
+                .SingleInstance();
+
             //服务器
             cb.RegisterType<UDPserver>()
                 .AsSelf()

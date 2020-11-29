@@ -64,6 +64,10 @@ namespace UDPserver
             }
             return JsonConvert.SerializeObject(result);
         }
+        /// <summary>
+        /// update weather
+        /// </summary>
+        /// <returns></returns>
         public async Task<int> UpdateWeatherAsync()
         {
             //查看参照表
@@ -85,7 +89,10 @@ namespace UDPserver
             Logger.Info("finished update weather");
             return await Api.SaveChangeAsync();
         }
-
+        /// <summary>
+        /// add record sites to record table
+        /// </summary>
+        /// <returns></returns>
         public async Task<int> InitWeatherAsync()
         {
             var result = await Api.GetReferenceAsync();

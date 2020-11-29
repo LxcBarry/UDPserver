@@ -17,18 +17,23 @@ namespace UDPserver
         private readonly RegisterDisposal _registerDisposal;
         private readonly PasswordDisposal _passwordDisposal;
         private readonly UdpClient UdpcSend;
+        private readonly GetRegisterDisposal _getRegisterDisposal;
+        private readonly RemoveRegDisposal _removeRegDisposal;
         public ServerBLL(
             LoginDisposal login,
             SendDisposal send,
             RegisterDisposal register,
-            PasswordDisposal password
+            PasswordDisposal password,
+            GetRegisterDisposal getRegister,
+            RemoveRegDisposal removeRegDisposal
             )
         {
             _loginDisposal = login;
             _sendDisposal = send;
             _registerDisposal = register;
             _passwordDisposal = password;
-
+            _getRegisterDisposal = getRegister;
+            _removeRegDisposal = removeRegDisposal;
             //内置发送客户端
             UdpcSend = new UdpClient(8887);
         }
@@ -47,6 +52,15 @@ namespace UDPserver
         {
             return await _passwordDisposal.RunAsync(msg);
         }
+
+        public async Task<string> GetRegister(string msg)
+        {
+            return await _getRegisterDisposal.RunAsync(msg);
+        }
+        public async Task<string> RemoveReg(string msg)
+        {
+            return await _removeRegDisposal.RunAsync(msg);
+        }
         public async Task<string> DisposalAsync(string msg)
         {
             var str = msg.Substring(0, 3);
@@ -63,20 +77,29 @@ namespace UDPserver
             {
                 result = await PwdUpdate(msg[3..])==null?null:"PWD";
             }
+            else if(str == "GRE")
+            {
+                result = await GetRegister(msg[3..]);
+                if (result != null) result = "GRE" + result;
+            }
+            else if(str == "DER")
+            {
+                result = await RemoveReg(msg[3..]);
+            }
             else
             {
                 Logger.Info("receive invalid command");
+                return null;
                 //return null;
             }
             // 可优化
             var jo = JsonConvert.DeserializeObject<JObject>(msg[3..]);
             if(result !=null)
-                return await SendAsync(result+"SUC", jo["ip"].ToString())>0?"sucess":null;
+                return await SendAsync("SUC"+result, jo["ip"].ToString())>0?"sucess":null;
             else
             {
-                return await SendAsync(result+"FAL", jo["ip"].ToString()) > 0 ? "sucess" : null;
+                return await SendAsync("FAL"+result, jo["ip"].ToString()) > 0 ? "sucess" : null;
             }
-            return null;
         }
 
         private async Task<int> SendAsync(string msg,string host)
