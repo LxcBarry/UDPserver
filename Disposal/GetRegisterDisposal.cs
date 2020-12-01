@@ -5,7 +5,7 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace UDPserver
+namespace UDPserver.Disposal
 {
     public class GetRegisterDisposal : IDisposal
     {

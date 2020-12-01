@@ -6,7 +6,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using DbApi;
 
-//todo 待测试
 namespace UDPserver.Disposal
 {
     public class RemoveRegDisposal : IDisposal
@@ -22,7 +21,7 @@ namespace UDPserver.Disposal
         }
 
         /// <summary>
-        /// 登记用户注册的地点，也就是加入观察者，其结果就是在数据库recordtable加入一行
+        /// 登记用户注册的地点，也就是删除观察者，其结果就是在数据库recordtable删除一行
         /// </summary>
         /// <param name="msg"></param>
         /// <returns></returns>

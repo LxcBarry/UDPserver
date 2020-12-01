@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="UDPserver.WeatherGetter">
+    <Position X="5.5" Y="1.5" Width="2.75" />
+    <Members>
+      <Method Name="WeatherGetter" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAEAAAAAAAIAAAAAAAAAAAABAAAQAgAAw=</HashCode>
+      <FileName>Module\DataGetter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="UDPserver.WeatherUpdater">
+    <Position X="0.5" Y="0.5" Width="3.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAEABAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Module\Updater.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

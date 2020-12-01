@@ -72,12 +72,14 @@ namespace UDPserver
             //var updater = WeatherGetter();
 
             var weatherUpdater = container.ResolveNamed<IUpdater>("weatherUpdater");
-            //weatherUpdater.AutoUpdate();
-            //var result = weatherUpdater.
-            //var updater = container.
             weatherUpdater.AutoUpdate();
             var server = container.Resolve<UDPserver>();
             server.StartRecv();
+            //weatherUpdater.AutoUpdate();
+            //var result = weatherUpdater.
+            //var datagetter = container.Resolve<WeatherGetter>();
+            //var result = datagetter.InitWeatherAsync();
+            //Console.WriteLine(result.Result > 0 ? "sucess!" : "fail");
             //server.SendMessage();
             //var log = new Log();
             //Logger.Info("hello world!");
