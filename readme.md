@@ -1,14 +1,6 @@
----
-class: "report"
----
-@import "report.less"
+**由于目前还在提交作业阶段，所以完整代码还未提交到本项目，待作业提交后即提交本项目代码，下面为完整代码的项目总结**  
 
-
-<!-- head -->
-<div align = "center">
-
-<span style="font-size:40px"> 天气预报系统项目总结 </span>
-</div>
+**天气预报系统项目总结** 
 
 
 
