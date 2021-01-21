@@ -99,8 +99,8 @@ namespace UDPserver
                     var result = _disposal.DisposalAsync(message);
                     //Console.WriteLine(string.Format("{0}[{1}]", localIpep, message));
                     //TODO 后续删除
-                    Thread.Sleep(1000);
-                    Console.WriteLine(result.Result);
+                    //Thread.Sleep(1000);
+                    //Console.WriteLine(result.Result);
                 }
                 catch (Exception ex)
                 {
